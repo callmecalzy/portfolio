@@ -555,6 +555,7 @@ ul{
     box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     text-align: center;
     position: relative;
+    margin-bottom: 10px;
 }
 
 .testimonial {
@@ -1332,9 +1333,9 @@ ul{
     background-size: cover;
 }
 
-.icon1 { background-image: url('images/facebook.png'); }
-.icon2 { background-image: url('images/insta.jfif'); }
-.icon3 { background-image: url('images/youtube.png'); }
+.icon1 { background-image: url('images/fb.png'); }
+.icon2 { background-image: url('images/yt.png'); }
+.icon3 { background-image: url('images/inst.png'); }
 
 footer {
     margin-top: 20px;
@@ -1342,6 +1343,17 @@ footer {
     font-size: 0.9em;
 }
 
+.login_container {
+    margin-top: 20px;
+    background: transparent;
+    padding: 40px;
+    border-radius: 15px;
+    border: none;
+    width: 400px;
+    max-width: 90%;
+    margin: auto;
+    text-align: center;
+}
 .login_container h2 {
     margin-bottom: 20px;
     font-size: 35px;
@@ -1372,6 +1384,12 @@ h1{
     50% {
     color: #f88d02;
     }
+}
+
+.centered{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .form_group {
@@ -1414,13 +1432,15 @@ h3{
     animation: popout 2s ease-out 2s infinite;
 }
 
-input, textarea {
+.form_group input, .form_group textarea {
     padding: 10px;
     border-radius: 8px;
     border: 1px solid #ccc;
     outline: none;
     font-size: 14px;
-    width: 100%; 
+    width: 100%;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
 }
 
