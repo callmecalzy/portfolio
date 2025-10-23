@@ -439,8 +439,9 @@ function toggleFullScreen() {
         }
     }
 }
-
 maxminButton.addEventListener('click', toggleFullScreen);
+const remove = document.querySelector(".result");
+const rem = document.querySelector(".paper-sizes");
 
 document.addEventListener('fullscreenchange', () => {
     if (document.fullscreenElement) {
@@ -452,6 +453,7 @@ document.addEventListener('fullscreenchange', () => {
 });
 
 let selectedOption = null;
+let isUserRegistered = false; 
 
 document.querySelectorAll('.option').forEach(option => {
     option.addEventListener('click', () => {
@@ -459,7 +461,7 @@ document.querySelectorAll('.option').forEach(option => {
         option.classList.add('active');
         selectedOption = {
             type: option.dataset.type,
-            price: option.dataset.price
+            price: option.dataset.price.split('-')[0].replace('+', '').trim() 
         };
     });
 });
@@ -470,6 +472,9 @@ document.getElementById('goBtn').addEventListener('click', () => {
         return;
     }
     document.getElementById('fileInput').click();
+    remove.style.display = 'none';
+    rem.style.display = 'none'; 
+
 });
 
 document.getElementById('fileInput').addEventListener('change', event => {
@@ -479,7 +484,7 @@ document.getElementById('fileInput').addEventListener('change', event => {
         reader.onload = e => {
             const board = document.getElementById('board');
             board.innerHTML = `<img src="${e.target.result}" alt="Selected Image">`;
-            document.getElementById('paperSizes').style.display = 'block';
+            document.getElementById('paperSizes').style.display = 'flex';
         };
         reader.readAsDataURL(file);
     }
@@ -496,20 +501,42 @@ sizeButtons.forEach(btn => {
     });
 });
 
-
 document.getElementById('payNowBtn').addEventListener('click', () => {
+    if (!isUserRegistered) {
+        alert('Please fill out and submit the Register/Contact form before proceeding to payment.');
+        document.getElementById('selfpromotion').scrollIntoView({ behavior: 'smooth' }); 
+        return;
+    }
     alert('Redirecting to payment...');
+});
+
+document.getElementById('login_form').addEventListener('submit', function(event) {
+    event.preventDefault(); 
+
+    isUserRegistered = true;
+    alert('Registration/Contact form submitted successfully! You can now proceed to payment.');
+
+    this.reset();
 });
 
 let currentIndex = 0;
 
-function showTestimonial(index) {
-    testimonials.forEach(t => t.classList.remove('active'));
-    dots.forEach(d => d.classList.remove('active'));
+const testimonials1 = document.querySelectorAll('.slider .testimonial');
+const dots1 = document.querySelectorAll('.dots .dot');
 
-    testimonials[index].classList.add('active');
-    dots[index].classList.add('active');
+function showTestimonial(index) {
+    testimonials1.forEach(t => t.classList.remove('active'));
+    dots1.forEach(d => d.classList.remove('active'));
+
+    if (testimonials1[index]) {
+        testimonials1[index].classList.add('active');
+    }
+    if (dots1[index]) {
+        dots1[index].classList.add('active');
+    }
 }
+
+showTestimonial(currentIndex); 
 
 dots.forEach((dot, index) => {
     dot.addEventListener('click', () => {
@@ -530,6 +557,12 @@ const thankMsg = document.getElementById('thankMsg');
 const userComment = document.getElementById('userComment');
 
 commentBtn.addEventListener('click', () => {
+    if (!isUserRegistered) {
+        alert('Please fill out and submit the Register/Contact form before leaving a comment.');
+        document.getElementById('selfpromotion').scrollIntoView({ behavior: 'smooth' }); 
+        return;
+    }
+
     commentBtn.style.display = 'none';
     commentBox.style.display = 'flex';
 });
@@ -539,6 +572,7 @@ sendBtn.addEventListener('click', () => {
     if (comment) {
         thankMsg.textContent = `Thank you for your comment!`;
         commentBox.style.display = 'none';
+        userComment.value = '';
     } else {
         alert('Please write a comment first.');
     }
