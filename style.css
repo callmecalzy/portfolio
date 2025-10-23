@@ -1347,7 +1347,7 @@ footer {
     border-radius: 15px;
     border: none;
     width: 400px;
-    max-width: 90%;
+    max-width: 100%;
     margin: auto;
     text-align: center;
 }
@@ -1890,6 +1890,18 @@ left: 125%;
         background-image: url(images/backb.png);
         background-position: center;
         background-size: cover;
+    }
+
+    .login_container {
+        margin-top: 20px;
+        background: transparent;
+        padding: 0px;
+        border-radius: 15px;
+        border: none;
+        width: 400px;
+        max-width: 100%;
+        text-align: center;
+        justify-content: center;
     }
 }
 
