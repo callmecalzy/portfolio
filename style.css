@@ -1441,6 +1441,10 @@ h3{
     box-sizing: border-box;
 }
 
+.form_group textarea{
+    color: #111;
+}
+
 .liquid-btn3:hover {
     background: linear-gradient(135deg, hsl(115, 100%, 50%), #20b2aa);
     transform: scale(1.1);
